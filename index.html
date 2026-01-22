@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog-Z | Photos & Videos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icons">📷</div>
+            <span>catalog-z</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#photos">Photos</a></li>
+                <li><a href="#videos">videos</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <!-- hero section -->
+    <section class="hero">
+        <h1>Discover Amazing Content</h1>
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search photos and videos...">
+            <button class="search-btn" id="searchBtn">Search</button>
+        </div>
+    </section>
+    <!-- main content -->
+    <!-- main content -->
+    <div class="container">
+        <section id="videos">
+            <div class="section-header">
+                <h2>Latest Videos</h2>
+                <div class="pagination">
+                    Page <span id="currentPage">1</span> of <span id="totalPages">10</span>
+                    <button id="prevBtn">←</button>
+                    <button id="nextBtn">→</button>
+                </div>
+            </div>
+
+            <div class="gallery" id="gallery">
+                <!-- Video items will be dynamically inserted here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- modal for full image view -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <p id="modalTitle" style="padding: 15px 0; text-align: center;"></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Catalog-Z</h3>
+                <p style="font-size: 13px; color: var(--text-light); line-height: 1.6;">Catalog-Z is free Bootstrap 5
+                    Alpha 2 HTML template for video and photo websites. You can freely use this template/layout for a
+                    front-end integration with any kind of CMS website.</p>
+
+            </div>
+            <div class="footer-section">
+                <h3>Our Links</h3>
+                <ul>
+                    <li><a href="#Advertise">Advertise</a></li>
+                    <li><a href="#Support">Support</a></li>
+                    <li><a href="#company">company</a></li>
+                    <li><a href="#contact">contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+                <div class="social-links">
+                    <div class="social-icon">f</div>
+                    <div class="social-icon">𝕏</div>
+                    <div class="social-icon">in</div>
+                    <div class="social-icon">📷</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>Copyright 2026 Catalog-Z Company. All rights reserved.</span>
+            <span>Designed by SimpleMedia</span>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
