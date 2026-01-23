@@ -1,0 +1,655 @@
+videos.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos | Catalog-Z</title>
+    <style>
+        :root {
+            --primary-color: #17a2a2;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f5f5f5;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--white);
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0f7f7f 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 400%22%3E%3Crect fill=%22%232d5a5a%22 width=%221200%22 height=%22400%22/%3E%3Cpath fill=%22%23408080%22 d=%22M0 200 Q 300 100 600 200 T 1200 200 L 1200 400 L 0 400 Z%22/%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        /* Videos Grid */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h3 {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .video-info p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-light);
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">📷</div>
+            <span>Catalog-Z</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#videos">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="videos.html" class="active">Videos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Catalog-Z Videos</h1>
+        <p>Watch our extensive collection of 40+ professionally curated videos</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="section-title">All Videos</h2>
+        <p class="section-subtitle">Browse and play any video below. Click to watch in full screen.</p>
+
+        <!-- Videos Grid -->
+        <div class="videos-grid" id="videosGrid">
+            <!-- Videos will be loaded by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Catalog-Z</h3>
+                <p style="font-size: 13px; color: var(--text-light); line-height: 1.6;">
+                    Catalog-Z is a modern platform for visual content creators and enthusiasts worldwide.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#videos">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="videos.html">Videos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                </ul>
+                <div class="social-links">
+                    <div class="social-icon">f</div>
+                    <div class="social-icon">𝕏</div>
+                    <div class="social-icon">in</div>
+                    <div class="social-icon">📷</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>Copyright 2026 Catalog-Z Company. All rights reserved.</span>
+            <span>Designed by SimpleMedia</span>
+        </div>
+    </footer>
+
+    <script>
+
+        const videos = [
+            {
+                id: 'jNQXAC9IVRw',
+                title: 'Me at the zoo',
+                description: 'Iconic first YouTube video'
+            },
+            {
+                id: 'https://www.youtube.com/watch?v=SlPhMPnQ58k',
+                title: 'Never Gonna Give You Up',
+                description: 'Popular music video'
+            },
+            {
+                id: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
+                title: 'PSY - GANGNAM STYLE',
+                description: 'Viral music sensation'
+            },
+            {
+                id: 'kJQP7kiw9Fk',
+                title: 'Luis Fonsi - Despacito',
+                description: 'Most viewed YouTube video'
+            },
+            {
+                id: 'ZbZSe6N_BXU',
+                title: 'Ed Sheeran - Shape of You',
+                description: 'Popular music hit'
+            },
+            {
+                id: 'kffacxfA7g4',
+                title: 'Justin Bieber - Baby',
+                description: 'Pop music sensation'
+            },
+            {
+                id: 'N3jgVn0sKLU',
+                title: 'Taio Cruz - Dynamite',
+                description: 'Dance music hit'
+            },
+            {
+                id: 'uVccH5s_QUI',
+                title: 'Maroon 5 - Moves Like Jagger',
+                description: 'Catchy pop song'
+            },
+            {
+                id: 'FG0fTJyVfXI',
+                title: 'One Direction - Story of My Life',
+                description: 'Boy band classic'
+            },
+            {
+                id: '0DiUxoIY_Xk',
+                title: 'Eminem - Lose Yourself',
+                description: 'Rap music masterpiece'
+            },
+            {
+                id: '61pRoG-mPLc',
+                title: 'Nicki Minaj - Anaconda',
+                description: 'Hip-hop hit'
+            },
+            {
+                id: 'lXQEi6kn8AU',
+                title: 'The Weeknd - Blinding Lights',
+                description: 'Modern pop classic'
+            },
+            {
+                id: 'e-IWRmpefzE',
+                title: 'Ariana Grande - thank u, next',
+                description: 'Popular pop single'
+            },
+            {
+                id: 'CvBfHwUxHIg',
+                title: 'Billie Eilish - bad guy',
+                description: 'Viral music sensation'
+            },
+            {
+                id: 'SlPhMPnQ58k',
+                title: 'Post Malone - Congratulations',
+                description: 'Hip-hop collaboration'
+            },
+            {
+                id: 'V1bFr2SWP1I',
+                title: 'Dua Lipa - One Kiss',
+                description: 'Dance pop hit'
+            },
+            {
+                id: 'qgaO2My8zfu',
+                title: 'Taylor Swift - Love Story',
+                description: 'Country-pop classic'
+            },
+            {
+                id: '-e8sBl6CYQM',
+                title: 'Cardi B - Bodak Yellow',
+                description: 'Rap music hit'
+            },
+            {
+                id: 'TEC-a89xo1E',
+                title: 'Lil Nas X - MONTERO',
+                description: 'Viral pop sensation'
+            },
+            {
+                id: 'K0ibBPhbMNU',
+                title: 'Olivia Rodrigo - drivers license',
+                description: 'Popular breakup ballad'
+            },
+            {
+                id: 'oOlDewpCfZQ',
+                title: 'Harry Styles - Watermelon Sugar',
+                description: 'Feel-good music'
+            },
+            {
+                id: 'N6LxVQxYRiE',
+                title: 'Shawn Mendes - Stitches',
+                description: 'Emotional pop song'
+            },
+            {
+                id: 'cHcnnLYQ44s',
+                title: 'Khalid - Location',
+                description: 'R&B pop hit'
+            },
+            {
+                id: 'eJnQBk73Ot0',
+                title: 'Marshmello & Bastille - Happier',
+                description: 'Electronic dance music'
+            },
+            {
+                id: 'Yw6u6YkTgQ0',
+                title: 'Calvin Harris - Feels',
+                description: 'EDM collaboration'
+            },
+            {
+                id: 'LRtn3zmbtww',
+                title: 'David Guetta - Titanium',
+                description: 'Dance music classic'
+            },
+            {
+                id: '5qm8PH7LSE8',
+                title: 'Diplo - Lean On',
+                description: 'Major Lazer hit'
+            },
+            {
+                id: 'x47NYzF2FI8',
+                title: 'Zedd & Alessia Cara - Stay',
+                description: 'Electronic pop'
+            },
+            {
+                id: 'k2qgadSvNyU',
+                title: 'Martin Garrix - Scared To Be Lonely',
+                description: 'EDM collaboration'
+            },
+            {
+                id: 'T4-PR38N_bE',
+                title: 'Skrillex - Scary Monsters',
+                description: 'Dubstep classic'
+            },
+            {
+                id: 'sKhlIKe0Zxc',
+                title: 'Deadmau5 - Professional Specs',
+                description: 'Electronic music'
+            },
+            {
+                id: 'XbLQUvnQ0qE',
+                title: 'Above & Beyond - Sun & Moon',
+                description: 'Trance music'
+            },
+            {
+                id: 'Y2VF8wmf9kE',
+                title: 'Jean-Michel Jarre - Oxygène',
+                description: 'Electronic music pioneer'
+            },
+            {
+                id: '98W9QuqJHPU',
+                title: 'Kraftwerk - Autobahn',
+                description: 'Electronic music legend'
+            },
+            {
+                id: 'hHW1oY26kxQ',
+                title: 'Daft Punk - Get Lucky',
+                description: 'French house classic'
+            },
+            {
+                id: 'Sa8AIWD7Go0',
+                title: 'The Chemical Brothers - Block Rockin Beats',
+                description: 'Big beat electronic'
+            },
+            {
+                id: 'X3bLQvuQ4DE',
+                title: 'Fatboy Slim - Praise You',
+                description: 'Big beat sensation'
+            },
+            {
+                id: '1_xVtKqIukI',
+                title: 'Basement Jaxx - Where\'s Your Head At',
+                description: 'Funky house music'
+            },
+            {
+                id: 'cOeKEy2KklQ',
+                title: 'Justice - D.A.N.C.E.',
+                description: 'French electro-house'
+            },
+            {
+                id: 'QH2-Te64d5s',
+                title: 'Modjo - Lady (Hear Me Tonight)',
+                description: 'French touch classic'
+            },
+            {
+                id: 'EAkqHfQc-dI',
+                title: 'Phoenix - Lisztomania',
+                description: 'Indie electronic pop'
+            },
+            { title: 'Big Buck Bunny', views: 'Open movie', id: 'YE7VzlLtp-4' },
+            { title: 'Sintel', views: 'Blender Foundation', id: 'eRsGyueVLvQ' },
+            { title: 'Tears of Steel', views: 'Sci‑fi short', id: 'R6MlUcmOul8' },
+            { title: 'Elephants Dream', views: 'Open movie', id: 'eM-5wAUE7pM' },
+            { title: 'NASA: Earth Views', views: 'ISS views of Earth', id: 'Dd7FixvoKBw' },
+            { title: 'Nature Relaxation', views: '4K waterfall scenery', id: 'HM0WOg6Cq8E' },
+            { title: 'City Timelapse', views: 'Urban skyline', id: 'QvZqf8pIPs0' },
+            { title: 'Ocean Waves', views: 'Relaxing sea', id: 'H2vN2mmNf24' },
+            { title: 'Documentary Clip', views: 'Educational short', id: 'w7ejDZ8SWv8' },
+            { title: 'Coding Tutorial', views: 'Learn programming', id: 'rfscVS0vtbw' },
+            { title: 'Space Journey', views: 'Universe visuals', id: '1w8Z0UOXVaY' },
+            { title: 'Motivation Video', views: 'Inspiration speech', id: 'mgmVOuLgFB0' },
+
+            { title: 'Big Buck Bunny (HD)', views: 'Blender open movie', id: 'YE7VzlLtp-4' },          // [web:14]
+            { title: 'Big Buck Bunny 4K', views: '4K version', id: 'aqz-KE-bpKQ' },                    // [web:13]
+            { title: 'Big Buck Bunny (full movie)', views: 'HD full short', id: 'Vpg9yizPP_g' },       // [web:26]
+
+            { title: 'Sintel', views: 'Blender open movie', id: 'eRsGyueVLvQ' },                       // [web:21]
+            { title: 'Sintel 4K', views: '4K version', id: '4nMQr_-twOE' },                            // alt 4K upload
+
+            { title: 'Tears of Steel', views: 'Blender VFX short', id: 'R6MlUcmOul8' },                 // [web:19]
+            { title: 'Tears of Steel 4K', views: '4K version', id: '41hv2tW5Lc4' },                    // [web:22]
+
+            { title: 'Elephants Dream', views: 'First Blender open movie', id: 'eM-5wAUE7pM' },        // [web:25]
+
+            { title: 'NASA: Earth from ISS', views: 'Beautiful Earth views', id: 'Dd7FixvoKBw' },      // [web:17]
+            { title: 'Nature Relaxation (Waterfalls)', views: 'Relaxing nature video', id: 'HM0WOg6Cq8E' }, // typical relaxation channel
+
+            { title: 'City Timelapse 4K', views: 'Urban skyline', id: 'QvZqf8pIPs0' },                  // common timelapse
+            { title: 'Ocean Waves 4K', views: 'Relaxing sea', id: 'H2vN2mmNf24' }                       // ocean relaxation
+        ];
+
+        // Function to create video card
+        function createVideoCard(video) {
+            return `
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/${video.id}"
+                            title="${video.title}"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        <p>${video.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load videos
+        const videosGrid = document.getElementById('videosGrid');
+        videos.forEach(video => {
+            videosGrid.innerHTML += createVideoCard(video);
+        });
+    </script>
+</body>
+
+</html>
